@@ -1,0 +1,24 @@
+<html ng-app="cmsApp">
+<head>
+    <script src="./library/angularjs/angular.min.js"></script>
+    <script src="./library/angular-route/angular-route.min.js"></script>
+    <script src="./library/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body> 
+    <div ng-controller="cmsController as cms">
+    <!--<tabset>
+        <tab ng-repeat="tab in tabs" heading="{{tab.id}}" active="tab.active" disable="tab.disabled" ng-click="cms.selectTab(tab.id)">
+            <div ng-view>
+            </div>
+        </tab>
+  </tabset>-->
+        <ul class="nav nav-tabs">
+            <li ng-repeat="tab in tabs">
+                <a href="#{{ tab.id }}" ng-click="cms.selectTab(tab.id)">{{tab.id}}</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
