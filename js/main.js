@@ -21,7 +21,16 @@ app.config(function($routeProvider) {
 			template: function($routeParams) {
 				return "<div>{{this.message}}</div>";
 			},
-			controller: "routeController"
+			controller: "routeController",
+			resolve: {
+				"Tabs": ["$q", "$http", function($q, $http) {
+					var deferred = $q.defer();
+					setTimeout(function() {
+						deferred.resolve("yo");
+					}, 300);
+					return deferred.promise;
+				}]
+			}
 		});
 });
 
@@ -31,6 +40,6 @@ app.controller("cmsController", function($scope, $http, $route) {
 	};
 });
 
-app.controller("routeController", function($scope, $routeParams) {
+app.controller("routeController", function($scope, $routeParams, Tabs) {
 	$scope.message = "You opened " + $scope.selectedTab.title;
 });
