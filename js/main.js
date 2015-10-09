@@ -8,6 +8,14 @@ app.run(function($rootScope) {
 	$rootScope.name = "Dmytro";
 });
 
+app.config(function($routeProvider) {
+	$routeProvider
+		.when("/dummyTable", {
+			templateUrl: "tabs/dummyTable.html",
+			controller: "cmsController"
+		});
+});
+
 function jsonp_callback(data) {
 	console.log(data);
 }
