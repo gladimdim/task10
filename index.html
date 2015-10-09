@@ -16,7 +16,7 @@
   </tabset>-->
         <ul class="nav nav-tabs">
             <li ng-repeat="tab in tabs">
-                <a href="#{{ tab.id }}" ng-click="cms.selectTab(tab.id)">{{tab.title}}</a>
+                <a href="#{{ tab.id }}" ng-click="cms.selectTab(tab)">{{tab.title}}</a>
             </li>
         </ul>
         <div ng-view></div>

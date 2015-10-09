@@ -4,30 +4,33 @@ var app = angular.module("cmsApp", [
 	]
 );
 
-app.run(function($rootScope) {
+app.run(function($rootScope, $http) {
 	$rootScope.name = "Dmytro";
+	$http.get("data.json").success(function(response) {
+		//lets rearrange tabs based on their order
+		$rootScope.tabs = response.sort(function (a, b) {
+			return a.order - b.order;
+		});
+		$rootScope.selectedTab = $rootScope.tabs[0];
+	});
 });
 
 app.config(function($routeProvider) {
 	$routeProvider
 		.when("/dummyTable", {
-			templateUrl: "tabs/dummyTable.html",
-			controller: "cmsController"
+			template: function($routeParams) {
+				return "<div>{{this.message}}</div>";
+			},
+			controller: "routeController"
 		});
 });
 
-function jsonp_callback(data) {
-	console.log(data);
-}
-app.controller("cmsController", function($scope, $http) {
-	$http.get("data.json").success(function(response) {
-		//lets rearrange tabs based on their order
-		$scope.tabs = response.sort(function (a, b) {
-			return a.order - b.order;
-		});
-	});
-
+app.controller("cmsController", function($scope, $http, $route) {
 	this.selectTab = function(tab) {
-		this.tabId = tab;
+		$scope.selectedTab = tab;
 	};
+});
+
+app.controller("routeController", function($scope, $routeParams) {
+	$scope.message = "You opened " + $scope.selectedTab.title;
 });
