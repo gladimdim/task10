@@ -15,14 +15,12 @@ requirejs.config({
 	}	
 });
 
-
-require(["angular"], function(angular) {
-	//manually bootstrap ng-app "cmsApp" on whole doc
-	//this is needed to resolve race condition when cmsApp is not
-	//yet initialized but Angular tries to use it
+//load app module then bootstrap application on document
+//this is needed as our app/main module relies on async tasks
+require(["app/main"], function(app) {
+    require(["angular"], function(angular) {
 	angular.element(document).ready(function() {
-		angular.bootstrap(document, ["cmsApp"]);
+	    angular.bootstrap(document, ["cmsApp"]);
 	});
+    });
 });
-
-require(["app/main"]);

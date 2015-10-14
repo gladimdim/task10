@@ -3,11 +3,11 @@
     <script data-main="./main.js" src="./require.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-cloak>
     <div ng-controller="cmsController as cms">
         <ul class="nav nav-tabs">
             <li ng-repeat="tab in tabs">
-                <a href="#{{ tab.id }}" ng-click="cms.selectTab(tab)">{{tab.title}}</a>
+                <a href="#{{ tab.id }}">{{tab.title}}</a>
             </li>
         </ul>
         <div ng-view></div>
