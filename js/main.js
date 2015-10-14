@@ -16,9 +16,10 @@ define(["angular", "angularRoute"], function(angular, ngRoute) {
 				return a.order - b.order;
 			});
 			$rootScope.selectedTab = $rootScope.tabs[0];
-
-			$routeProviderRef
-				.when("/dummyTable", {
+			response.forEach(function(el) {
+				debugger;
+				$routeProviderRef
+				.when("/" + el.id, {
 					template: function(urlattrs) {
 						return "<div>{{this.message}}</div>";
 					},
@@ -33,6 +34,8 @@ define(["angular", "angularRoute"], function(angular, ngRoute) {
 						}]
 					}
 				});
+			});
+			
 			$route.reload();
 		});
 	});
