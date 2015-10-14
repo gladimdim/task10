@@ -20,7 +20,7 @@ define(["angular", "angularRoute"], function(angular, ngRoute) {
                 $routeProviderRef
                 .when("/" + el.id, {
                     template: function(urlattrs) {
-                        return "<div>{{this.view}}</div>";
+                        return "<div ng-bind-html='renderUnsafeHtml(this.viewHTML);'>{{this.viewHTML}}</div>";
                     },
                     controller: "routeController",
                     resolve: {
@@ -47,7 +47,12 @@ define(["angular", "angularRoute"], function(angular, ngRoute) {
         };
     });
 
-    app.controller("routeController", function($scope, Tabs) {
-        $scope.view = Tabs.render().el;
+    app.controller("routeController", function($scope, Tabs, $sce) {
+        $scope.viewHTML = Tabs.render().el.outerHTML;
+
+        $scope.renderUnsafeHtml = function(h) {
+            //let's hope we can trust received html
+            return $sce.trustAsHtml(h);
+        };
     });
 });
