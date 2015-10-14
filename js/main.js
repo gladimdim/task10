@@ -48,6 +48,6 @@ define(["angular", "angularRoute"], function(angular, ngRoute) {
     });
 
     app.controller("routeController", function($scope, Tabs) {
-        $scope.view = Tabs;
+        $scope.view = Tabs.render().el;
     });
 });
