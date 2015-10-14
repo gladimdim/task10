@@ -12,8 +12,17 @@ requirejs.config({
 			exports: "angular"
 		},
 		"angularRoute": ["angular"]
-	},
-	deps: ["main"]
+	}	
 });
 
-requirejs(["app/main"]);
+
+require(["angular"], function(angular) {
+	//manually bootstrap ng-app "cmsApp" on whole doc
+	//this is needed to resolve race condition when cmsApp is not
+	//yet initialized but Angular tries to use it
+	angular.element(document).ready(function() {
+		angular.bootstrap(document, ["cmsApp"]);
+	});
+});
+
+require(["app/main"]);

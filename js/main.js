@@ -1,10 +1,9 @@
 define(["angular", "angularRoute"], function(angular, ngRoute) {
-    var app = angular.module("cmsApp", [
-            "ngRoute"
-        ]
-    );
+    var app = angular.module("cmsApp", ["ngRoute"]);
 
     app.config(function($routeProvider) {
+        //save the reference to routeProviderRef so later in app.run
+        //we can add routes dynamically.
         $routeProviderRef = $routeProvider;
     });
 
