@@ -1,7 +1,7 @@
 requirejs.config({
 	paths: {
-		"angular": "./library/angularjs/angular",
-		"angularRoute": "./library/angular-route/angular-route",
+		"angular": "./bower_components/angular/angular",
+		"angularRoute": "./bower_components/angular-route/angular-route",
 		"app": "./js",
 		"backbone": "./library/backbone-min",
 		"jquery": "./library/jquery-2.1.4.min",
